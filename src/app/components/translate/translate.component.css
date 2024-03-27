@@ -1,0 +1,29 @@
+.language-selector {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #016565;
+  border-radius: 15px;
+  appearance: none;
+  border: none;
+  font-size: 16px;
+  color: white;
+  margin-right: 5px;
+
+}
+
+select {
+  background: #016565;
+  font-size: 14px;
+  color: white;
+  border: none;
+  width: 90px;
+  border-radius: 15px;
+}
+
+.app-translate {
+  z-index: 3;
+  margin-right: 5px;
+  position: absolute;
+  right: 10px;
+}

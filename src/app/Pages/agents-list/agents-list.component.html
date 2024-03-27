@@ -1,0 +1,51 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <div style="padding-top: 60px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="margin: 0;">{{ 'Agents' | translate }}</h1>
+    <div style="display: flex; align-items: center; gap: 170px;">
+
+    </div>
+  </div>
+  <div style="overflow-y: auto; max-height: 500px;">
+    <table class="table table-hover" style="padding-top: 40px; margin-top: 20px;">
+      <thead>
+      <tr>
+        <th>CIN</th>
+        <th>{{ 'Pseudo' | translate }}</th>
+        <th>{{ 'Nom' | translate }}</th>
+        <th>{{ 'Prénom' | translate }}</th>
+        <th>{{ 'Téléphone' | translate }}</th>
+        <th>{{ 'Age' | translate }}</th>
+        <th>{{ 'Sexe' | translate }}</th>
+        <th>Service</th>
+        <th>{{ 'Actions' | translate }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let agent of agents">
+        <td data-title="CIN" data-type="currency">{{ agent.cin }}</td>
+        <td data-title="Pseudo" data-type="currency">{{ agent.pseudoname }}</td>
+        <td data-title="Nom">{{ agent.nom }}</td>
+        <td data-title="Prenom">{{ agent.prenom }}</td>
+        <td data-title="Contact" data-type="currency">{{ agent.tel }}</td>
+        <td data-title="Age">{{ calculateAge(agent.dateNaissance) }} ans</td>
+        <td data-title="Sexe" data-type="currency">{{ agent.sexe }}</td>
+        <td data-title="Service">{{ agent.service }}</td>
+
+
+        <td>
+          <button><i class="fa fa-edit"></i></button>
+          <button (click)="deleteUser(agent.id)"><i class="fa fa-trash"></i></button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+  <div *ngIf="agents.length === 0"
+       style="display: flex; justify-content: center; align-items: center; height: 50px; color:darkred">
+    <p>{{ 'Aucun résultat!' | translate }}</p>
+  </div>
+  <router-outlet></router-outlet>
+</div>

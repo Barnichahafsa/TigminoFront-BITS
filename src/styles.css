@@ -1,0 +1,30 @@
+@import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+
+* {
+  /* background: #ECE6C2;*/
+  font-family: Arial, sans-serif;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.ng-invalid:not(form) {
+  border-right: 4px solid #CD6C4B !important;
+}
+
+.ng-valid:not(form) {
+  border-left: 4px solid #73BCA8 !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+

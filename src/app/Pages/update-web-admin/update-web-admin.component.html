@@ -1,0 +1,83 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <h1>Modifier Administrateur</h1>
+  <div *ngIf="showSuccessMessage" class="alert alert-success fade-out" role="alert">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="showErrorMessage" class="alert alert-danger fade-out" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <form #adminForm="ngForm" (ngSubmit)="updateAdmin()">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input [(ngModel)]="currentAdmin.nom" class="form-control" id="nom" name="nom" required type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="prenom">Prénom :</label>
+      <input [(ngModel)]="currentAdmin.prenom" class="form-control" id="prenom" name="prenom" required type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="contact">Contact :</label>
+      <input [(ngModel)]="currentAdmin.contact" class="form-control" id="contact" name="contact" required type="number">
+
+    </div>
+
+    <div class="form-group">
+      <label for="pseudoname">Pseudoname :</label>
+      <input [(ngModel)]="currentAdmin.pseudoname" class="form-control" id="pseudoname" name="pseudoname" required
+             type="text">
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="date_start_passkey">Date début mot de passe :</label>
+      <input [value]="formatDate(currentAdmin.date_start_passkey)" class="form-control" id="date_start_passkey" name="date_start_passkey"
+             type="date">
+    </div>
+
+    <div class="form-group">
+      <label for="date_end_passkey">Date Fin mot de passe :</label>
+      <input [value]="formatDate(currentAdmin.date_end_passkey)" class="form-control" id="date_end_passkey" name="date_end_passkey"
+             type="date">
+    </div>
+
+    <div class="form-group">
+      <label for="block_access">Bloquer l'accès :</label>
+      <input [(ngModel)]="currentAdmin.block_access" class="form-control" id="block_access" name="block_access"
+             required type="number">
+
+    </div>
+
+    <div class="form-group">
+      <label for="role">Rôle :</label>
+      <input [(ngModel)]="currentAdmin.role" class="form-control" id="role" name="role" required type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="dept_code">Code du département :</label>
+      <input [(ngModel)]="currentAdmin.dept_code" class="form-control" id="dept_code" name="dept_code" required
+             type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="nbr_session_allowed">Nombre de sessions permises :</label>
+      <input [(ngModel)]="currentAdmin.nbr_session_allowed" class="form-control" id="nbr_session_allowed" name="nbr_session_allowed"
+             required type="number">
+
+    </div>
+
+    <div class="form-group">
+      <label for="number_of_tries_allowed">Nombre d'essais permis :</label>
+      <input [(ngModel)]="currentAdmin.number_of_tries_allowed" class="form-control" id="number_of_tries_allowed" name="number_of_tries_allowed"
+             required type="number">
+
+    </div>
+    <div style="display: flex; justify-content: flex-end; ">
+      <button [disabled]="adminForm.invalid" class="btn btn-success" type="submit">Modifier</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  --color-whitesmoke: #ebedf2;
+  --gap-0: 0px;
+  --padding-lg: 18px;
+  --padding-76xl: 95px;
+  --padding-xl: 20px;
+  --padding-28xl: 47px;
+}

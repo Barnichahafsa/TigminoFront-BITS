@@ -1,0 +1,126 @@
+// add-mob-user.component.html
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <div *ngIf="showSuccessMessage" class="alert alert-success fade-out" role="alert">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="showErrorMessage" class="alert alert-danger fade-out" role="alert">
+    {{ errorMessage }}
+  </div>
+  <div style="display: flex; justify-content: flex-end;">
+    <button (click)="showForm = !showForm" class="btn btn-success">Nouveau appartement</button>
+  </div>
+
+  <div *ngIf="showForm">
+    <form (ngSubmit)="onSubmit()" style="display: flex; flex-wrap: wrap;">
+      <div style="flex: 1; margin-right: 10px;">
+        <label for="appartementNumber">Numéro d'appartement :</label>
+        <input [(ngModel)]="appartement.number" id="appartementNumber" name="appartementNumber" required style="width: 100%;"
+               type="text">
+      </div>
+      <div style="flex: 1; margin-right: 50px;">
+        <label for="residence">Résidence :</label>
+        <select (change)="loadApartments()" [(ngModel)]="selectedResidenceId" class="form-control" id="residence" name="residence"
+                required style="width: 100%;">
+          <option *ngFor="let residence of residences" [value]="residence.id">{{ residence.nom }}</option>
+        </select>
+      </div>
+    </form>
+    <div style="display: flex; justify-content: flex-end; margin-right: 10px;">
+      <button (click)="onSubmit()" class="btn btn-success" style="background-color:#016565">Ajouter</button>
+    </div>
+  </div>
+
+
+  <h1>{{ 'Nouveau Coprorpiétaire'| translate }}</h1>
+
+
+  <form #userForm="ngForm" (ngSubmit)="addUserCop()">
+    <h3>Informations personnelles :</h3>
+    <div class="form-group">
+      <label for="cin">CIN:</label>
+      <input [(ngModel)]="newUser.cin" class="form-control" id="cin" name="cin" required type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="nom">{{ 'Nom'| translate }}:</label>
+      <input [(ngModel)]="newUser.nom" class="form-control" id="nom" name="nom" required type="text">
+    </div>
+    <div class="form-group">
+      <label for="prenom">{{ 'Prénom'| translate }}:</label>
+      <input [(ngModel)]="newUser.prenom" class="form-control" id="prenom" name="prenom" required type="text">
+    </div>
+    <div class="form-group">
+      <label for="dateNaissance">{{ 'Date de Naissance'| translate }}:</label>
+      <input [(ngModel)]="newUser.dateNaissance" class="form-control" id="dateNaissance" name="dateNaissance"
+             required type="date">
+    </div>
+
+    <div class="form-group">
+      <div class="radio-buttons">
+        <label>{{ 'Sexe'| translate }}:</label>
+        <label>
+          <input [(ngModel)]="newUser.sexe" name="sexe" required type="radio" value="Femme"> Femme
+        </label>
+        <label>
+          <input [(ngModel)]="newUser.sexe" name="sexe" required type="radio" value="Homme"> Homme
+        </label>
+      </div>
+    </div>
+    <div>
+      <label>Résidence:</label>
+      <select (change)="loadApartments()" [(ngModel)]="selectedResidenceId" name="residence" required>
+        <option *ngFor="let residence of residences" [value]="residence.id">{{ residence.nom }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="appartement">Appartement:</label>
+      <select [(ngModel)]="appartement.id" id="appartement" name="appartement" required>
+        <option *ngFor="let apartment of apartments" [value]="apartment.id">{{ apartment.number }}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="tel">{{ 'Téléphone'| translate }}:</label>
+      <input [(ngModel)]="newUser.tel" class="form-control" id="tel" name="tel" required type="text">
+    </div>
+    <h3>Informations de connexion :</h3>
+    <div class="form-group">
+      <label for="pseudoname">{{ 'Pseudo'| translate }}:</label>
+      <input [(ngModel)]="newUser.pseudoname" class="form-control" id="pseudoname" name="pseudoname" required
+             type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="passkey">{{ 'Mot de passe'| translate }}:</label>
+      <input [(ngModel)]="newUser.passkey" class="form-control" id="passkey" name="passkey" required type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="type">{{ 'Type'| translate }}:</label>
+      <input [(ngModel)]="newUser.type" class="form-control" id="type" name="type" required type="text">
+    </div>
+
+
+    <div class="form-group">
+      <label for="blockAccess">{{ "Bloquer l'accès"| translate }}:</label>
+      <input [(ngModel)]="newUser.blockAccess" class="form-control" id="blockAccess" name="blockAccess" required
+             type="number">
+    </div>
+
+    <div class="form-group">
+      <label for="numberOfTriesAllowed">{{ "Nombre d'essais permis"| translate }}:</label>
+      <input [(ngModel)]="newUser.numberOfTriesAllowed" class="form-control" id="numberOfTriesAllowed" name="numberOfTriesAllowed"
+             required type="number">
+    </div>
+
+
+    <div style="display: flex; justify-content: flex-end;">
+      <button (click)="resetForm()" class="btn btn-secondary" style="margin-right: 40px;"
+              type="reset">{{ 'Réinitialiser'| translate }}
+      </button>
+      <button class="btn btn-success" type="submit">{{ 'Ajouter'| translate }}</button>
+    </div>
+  </form>
+</div>

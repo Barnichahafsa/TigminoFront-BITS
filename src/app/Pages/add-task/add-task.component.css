@@ -1,0 +1,46 @@
+.page-container {
+  align-items: center;
+  height: 100vh;
+  margin: 95px;
+}
+
+.custom-form label {
+  margin-bottom: 10px;
+}
+
+.custom-button {
+  background-color: #016565;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.custom-button:hover {
+  background-color: darkgray;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown {
+  padding-right: 30px;
+}
+
+.dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

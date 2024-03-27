@@ -1,0 +1,166 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <h1>{{ 'Nouveau Administrateur'| translate }}</h1>
+  <div *ngIf="showSuccessMessage" class="alert alert-success fade-out" role="alert">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="showErrorMessage" class="alert alert-danger fade-out" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <form #adminForm="ngForm" (ngSubmit)="register()">
+    <h3>Informations personnelles :</h3>
+    <div class="form-group">
+      <label for="nom">{{ 'Nom'| translate }} :</label>
+      <input #nom="ngModel" [(ngModel)]="newAdmin.nom" [ngClass]="{'is-invalid': nom.invalid && (nom.dirty || nom.touched)}" [ngModelOptions]="{updateOn: 'blur'}" class="form-control" id="nom" name="nom"
+             required
+             type="text">
+      <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert alert-danger">
+        <div *ngIf="nom.errors?.['required']">
+          {{ 'Le nom est requis' | translate }}.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="prenom">{{ 'Prénom'| translate }} :</label>
+      <input #prenom="ngModel" [(ngModel)]="newAdmin.prenom" class="form-control" id="prenom" name="prenom" required
+             type="text">
+      <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="alert alert-danger">
+        <div *ngIf="prenom.errors?.['required']">
+          {{ 'Le prénom est requis' | translate }}.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contact">{{ 'Contact'| translate }} :</label>
+      <input #contact="ngModel" [(ngModel)]="newAdmin.contact" class="form-control" id="contact" name="contact" required
+             type="number">
+      <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="alert alert-danger">
+        <div *ngIf="contact.errors?.['required']">
+          {{ 'Le contact est requis'| translate }}.
+        </div>
+        <div *ngIf="adminForm.hasError('contact.invalidContact')">
+          {{ messagesErreur.contact.invalidContact }}
+        </div>
+      </div>
+    </div>
+    <h3>Informations de connexion :</h3>
+    <div class="form-group">
+      <label for="pseudoname">{{ 'Pseudo'| translate }} :</label>
+      <input #pseudoname="ngModel" [(ngModel)]="newAdmin.pseudoname" class="form-control" id="pseudoname" name="pseudoname"
+             required type="text">
+      <div *ngIf="pseudoname.invalid && (pseudoname.dirty || pseudoname.touched)" class="alert alert-danger">
+        <div *ngIf="pseudoname.errors?.['required']">
+          {{ 'Le pseudoname est requis'| translate }}.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="passkey">{{ 'Mot de passe'| translate }} :</label>
+      <input #passkey="ngModel" [(ngModel)]="newAdmin.passkey" class="form-control" id="passkey" name="passkey" required
+             type="text">
+      <div *ngIf="passkey.invalid && (passkey.dirty || passkey.touched)" class="alert alert-danger">
+        <div *ngIf="passkey.errors?.['required']">
+          {{ 'Le mot de passe est requis'| translate }}.
+        </div>
+      </div>
+    </div>
+    <h3>Paramètres de connexion :</h3>
+    <div class="form-group">
+      <label for="date_start_passkey">{{ 'Date début mot de passe'| translate }} :</label>
+      <input class="form-control" formControlName="date_start_passkey" id="date_start_passkey" type="date">
+      <div *ngIf="adminForm.hasError('invalidDateRange', ['date_start_passkey', 'date_end_passkey'])"
+           class="alert alert-danger">
+        <div *ngIf="adminForm.errors?.['invalidDateRange']">
+          {{ messagesErreur.dateRange.invalidDateRange }}
+        </div>
+        <div *ngIf="adminForm.errors?.['invalidReverseDateRange']">
+          {{ messagesErreur.dateRange.invalidReverseDateRange }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date_end_passkey">{{ 'Date Fin mot de passe'| translate }} :</label>
+      <input class="form-control" formControlName="date_end_passkey" id="date_end_passkey" type="date">
+      <div *ngIf="adminForm.hasError('invalidDateRange', ['date_start_passkey', 'date_end_passkey'])"
+           class="alert alert-danger">
+        <div *ngIf="adminForm.errors?.['invalidDateRange']">
+          {{ messagesErreur.dateRange.invalidDateRange }}
+        </div>
+        <div *ngIf="adminForm.errors?.['invalidReverseDateRange']">
+          {{ messagesErreur.dateRange.invalidReverseDateRange }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="block_access">{{ "Bloquer l'accès"| translate }} :</label>
+      <input #block_access="ngModel" [(ngModel)]="newAdmin.block_access" class="form-control" id="block_access"
+             name="block_access" required type="number">
+      <div *ngIf="block_access.invalid && (block_access.dirty || block_access.touched)" class="alert alert-danger">
+        <div *ngIf="block_access.errors?.['required']">
+          Bloquer l'accès est requis.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="role">{{ 'Rôle'| translate }} :</label>
+      <input #role="ngModel" [(ngModel)]="newAdmin.role" class="form-control" id="role" name="role" required
+             type="text">
+      <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger">
+        <div *ngIf="role.errors?.['required']">
+          {{ 'Le rôle est requis'| translate }}.
+        </div>
+        <div *ngIf="adminForm.errors?.['invalidDateRange']">
+          {{ messagesErreur.role.invalidRole }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dept_code">{{ 'Code du département'| translate }} :</label>
+      <input #dept_code="ngModel" [(ngModel)]="newAdmin.dept_code" class="form-control" id="dept_code" name="dept_code" required
+             type="text">
+      <div *ngIf="dept_code.invalid && (dept_code.dirty || dept_code.touched)" class="alert alert-danger">
+        <div *ngIf="dept_code.errors?.['required']">
+          {{ 'Le code du département est requis'| translate }}.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nbr_session_allowed">{{ 'Nombre de sessions permises'| translate }}:</label>
+      <input #nbr_session_allowed="ngModel" [(ngModel)]="newAdmin.nbr_session_allowed" class="form-control" id="nbr_session_allowed"
+             name="nbr_session_allowed" required type="number">
+      <div *ngIf="nbr_session_allowed.invalid && (nbr_session_allowed.dirty || nbr_session_allowed.touched)"
+           class="alert alert-danger">
+        <div *ngIf="nbr_session_allowed.errors?.['required']">
+          {{ 'Le nombre de sessions permises est requis'| translate }}.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="number_of_tries_allowed">{{ "Nombre d'essais permis"| translate }}:</label>
+      <input #number_of_tries_allowed="ngModel" [(ngModel)]="newAdmin.number_of_tries_allowed" class="form-control" id="number_of_tries_allowed"
+             name="number_of_tries_allowed" required type="number">
+      <div *ngIf="number_of_tries_allowed.invalid && (number_of_tries_allowed.dirty || number_of_tries_allowed.touched)"
+           class="alert alert-danger">
+        <div *ngIf="number_of_tries_allowed.errors?.['required']">
+          {{ "Le nombre d'essais permis est requis"| translate }}.
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: flex-end; ">
+      <button (click)="resetForm()" class="btn btn-secondary" style="margin-right: 40px"
+              type="button">{{ 'Réinitialiser'| translate }}
+      </button>
+      <button [disabled]="adminForm.invalid" class="btn btn-success" type="submit">{{ 'Ajouter'| translate }}</button>
+    </div>
+  </form>
+</div>

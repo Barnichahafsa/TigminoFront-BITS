@@ -1,0 +1,53 @@
+<div class="page-container">
+  <div>
+    <app-sidebar></app-sidebar>
+    <h1 style="text-align: center">Nouvelle tâche</h1>
+    <form (ngSubmit)="addTask()" class="custom-form">
+      <div class="form-group">
+        <label for="Subject">Titre :</label>
+        <input [(ngModel)]="newTask.Subject" class="form-control large-input" id="Subject" name="Subject" placeholder="Entrer le titre"
+               required type="text">
+      </div>
+      <input [value]="newTask.Description" name="Description" type="hidden">
+      <div class="form-group">
+        <label for="description">Agent:</label>
+        <input [value]="userDescription" class="form-control large-input" id="description" name="displayDescription"
+               readonly type="text">
+      </div>
+
+      <div class="form-group">
+        <label for="Location">Localisation :</label>
+        <div class="dropdown-container"> <!-- Added a container for styling -->
+          <select [(ngModel)]="newTask.Location" class="form-control large-input dropdown" id="Location" name="Location"
+                  required>
+            <option *ngFor="let residence of residences" [value]="residence.nom">{{ residence.nom }}</option>
+          </select>
+          <span class="dropdown-icon">▼</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="StartTime">Date début :</label>
+        <input [(ngModel)]="newTask.StartTime" class="form-control large-input" id="StartTime" name="StartTime"
+               required type="datetime-local">
+      </div>
+      <div class="form-group">
+        <label for="EndTime">Date fin :</label>
+        <input [(ngModel)]="newTask.EndTime" class="form-control large-input" id="EndTime" name="EndTime"
+               required type="datetime-local">
+      </div>
+
+
+      <div class="form-group">
+        <input [(ngModel)]="newTask.IsAllDay" id="IsAllDay" name="IsAllDay" required style="margin-right: 5px"
+               type="checkbox">
+        <label for="IsAllDay"> Toute la journée</label>
+      </div>
+
+
+      <div class="button-container">
+        <button class="custom-button" type="submit">Affecter</button>
+      </div>
+    </form>
+  </div>
+</div>

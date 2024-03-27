@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+body {
+  overflow: hidden;
+}
+
+
+.title {
+  color: #016565;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.reclamation-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.reclamation-box {
+  background-color: #f8f9fa;
+  border: 2px solid #016565;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reclamation-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reclamation-box h3 {
+  margin-top: 0;
+  color: #343a40;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.reclamation-box p {
+  color: #6c757d;
+  margin-bottom: 8px;
+}

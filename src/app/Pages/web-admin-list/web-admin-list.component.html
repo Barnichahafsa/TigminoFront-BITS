@@ -1,0 +1,49 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <div style="padding-top: 60px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="margin: 0;">{{ 'Administrateurs' | translate }}</h1>
+    <div style="display: flex; align-items: center; gap: 170px;">
+      <select [(ngModel)]="selectedSearchCriteria" class="form-control" class="rounded-search small-input"
+              style="width: 120px;">
+        <option value="nom">{{ 'Nom' | translate }}</option>
+        <option value="prenom">{{ 'Prénom' | translate }}</option>
+        <option value="tel">{{ 'Contact' | translate }}</option>
+        <option value="role">{{ 'Role' | translate }}</option>
+        <option value="code">{{ 'Code' | translate }}</option>
+      </select>
+      <input [(ngModel)]="searchText" class="rounded-search small-input" placeholder="Rechercher" style="width: 150px;">
+      <button (click)="goToCreatePage()" class="btn btn-custom" style="font-size: 12px;"
+              type="button">{{ 'Ajouter' | translate }}  +
+      </button>
+    </div>
+  </div>
+  <table class="table table-hover" style="padding-top: 50px; margin-top: 50px;">
+    <thead>
+    <tr>
+      <th>{{ 'Pseudoname' | translate }}</th>
+      <th>{{ 'Nom' | translate }}</th>
+      <th>{{ 'Prenom' | translate }}</th>
+      <th>{{ 'Contact' | translate }}</th>
+      <th>{{ 'Role' | translate }}</th>
+      <th>{{ 'Code Dep' | translate }}</th>
+      <th>{{ 'Actions' | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let admin of admins | appFilterAdmin: searchText : selectedSearchCriteria">
+      <td data-title="Pseudo">{{ admin.pseudoname }}</td>
+      <td data-title="Nom">{{ admin.nom }}</td>
+      <td data-title="Prenom">{{ admin.prenom }}</td>
+      <td data-title="Contact">{{ admin.contact }}</td>
+      <td data-title="Role">{{ admin.role }}</td>
+      <td data-title="Code Dep">{{ admin.dept_code }}</td>
+      <td>
+        <button routerLink="/update/{{ admin.id }}"><i class="fa fa-edit"></i></button>
+        <button (click)="deleteAdmin(admin.id)"><i class="fa fa-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
+</div>
+

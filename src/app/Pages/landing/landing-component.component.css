@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-image: url("src/assets/images/backgroundLanding (1).jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-size: contain;
+  }
+}
+
+button {
+  border: 2px solid #5A8D9C;
+  border-radius: 19px;
+  background-color: #5A8D9C;
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #016565;
+  border-color: #016565;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+
+.div {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 982px;
+  padding: 20px;
+}
+
+.img {
+  position: relative;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index:14;
+}
+
+.div-2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 400;
+  text-align: center;
+}
+
+.img-2 {
+  aspect-ratio: 4.76;
+  object-position: center;
+  width: 294px;
+  max-width: 100%;
+}
+
+.div-3 {
+  font-family: Varta, sans-serif;
+  align-self: end;
+  margin-top: 43px;
+  flex-grow: 1;
+}
+
+.div-4 {
+  width: 700px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.57);
+  margin-top: 102px;
+  display: flex;
+  justify-content: flex-start;
+  font: 800 70px Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.div-5 {
+  text-align: center;
+  color: #000;
+  width: 700px;
+  font: 700 14px Montserrat, sans-serif;
+}
+
+@media (max-width: 1025px) {
+  .div {
+    padding: 20px;
+  }
+
+}
+
+@media (max-width: 991px) {
+  .div-2 {
+    max-width: 100%;
+    margin-right: 7px;
+    flex-wrap: wrap;
+  }
+
+  .div-3 {
+    margin-top: 40px;
+  }
+
+  .div-4 {
+    max-width: 100%;
+    font-size: 40px;
+    line-height: 60px;
+    margin: 40px 7px 0;
+  }
+
+  .div-5 {
+    max-width: 100%;
+    margin: 40px 7px 0;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-size: cover;
+  }
+}

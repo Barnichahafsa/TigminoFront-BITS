@@ -1,0 +1,50 @@
+<div class="container">
+  <app-sidebar class="app-sidebar"></app-sidebar>
+
+  <h1 style="padding: 25px">Planning des agents</h1>
+
+  <div class="flex-container">
+    <ejs-schedule [eventSettings]="eventSettings" class="ejs-schedule" locale="fr"></ejs-schedule>
+
+    <div class="agent-list">
+      <div class="centered-elements">
+        <select [(ngModel)]="selectedSearchCriteria"class="form-control rounded-search small-input"
+                style="width: 120px;">
+          <option value="nom">{{ 'Nom' | translate }}</option>
+          <option value="prenom">{{ 'Prénom' | translate }}</option>
+          <option value="service">{{ 'Service' | translate }}</option>
+        </select>
+        <input (input)="onSearch()" [(ngModel)]="searchText" class="rounded-search small-input" placeholder="Rechercher"
+               style="width: 150px;">
+      </div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Service</th>
+          <th>{{ 'Affectation' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngIf="agents && agents.length > 0; else noResults">
+          <tr *ngFor="let agent of agents | appFilterAgentSchedule: searchText : selectedSearchCriteria">
+            <td>{{ agent.nom }}</td>
+            <td>{{ agent.prenom }}</td>
+            <td>{{ agent.service }}</td>
+            <td style="justify-content:center; display: flex;border-top-width: 0px">
+              <button (click)="goToCreatePage(agent.id)" class="btn btn-custom" style="font-size: 12px;" type="button">
+                {{ 'Ajouter' | translate }}  +
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+      <ng-template #noResults>
+        <p style="color: darkred; display: flex;justify-content: center">Aucun résultat trouvé.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

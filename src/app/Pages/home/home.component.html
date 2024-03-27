@@ -1,0 +1,17 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <body>
+  <h1 class="title">Réclamations</h1>
+  <div class="reclamation-container">
+    <div *ngFor="let reclamation of reclamations" class="reclamation-box">
+      <h3 style="color:#5A5A5A; display: flex;justify-content: center"><b>{{ reclamation.titre }}</b></h3>
+      <p>{{ reclamation.description }}</p>
+      <div class="metadata">
+        <p><u>Par: {{ reclamation.nom }} {{ reclamation.prenom }}</u></p>
+        <p><u>Le: {{ reclamation.dateReclamation | date:'dd/MM/yyyy' }}</u></p>
+      </div>
+    </div>
+  </div>
+  </body>
+</div>
+<router-outlet></router-outlet>
